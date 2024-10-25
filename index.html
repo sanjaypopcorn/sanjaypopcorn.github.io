@@ -1,38 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="load_trim">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>load_trim</title>
-  <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load and Trim Calculator for P2008JC</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+    <div class="container">
+        <h1>Load and Trim Calculator</h1>
+        <div>
+            <label for="aircraft-select">Select Aircraft</label>
+            <select id="aircraft-select">
+                <option value="">--Select an Aircraft--</option>
+                <option value="VT-RIA">VT-RIA</option>
+                <option value="VT-RIB">VT-RIB</option>
+                <option value="VT-RBD">VT-RBD</option>
+                <option value="VT-RBX">VT-RBX</option>
+                <option value="VT-RBY">VT-RBY</option>
+                <option value="VT-RBR">VT-RBR</option>
+                <option value="VT-RFG">VT-RFG</option>
+                <option value="VT-RBS">VT-RBS</option>
+                <option value="VT-RBU">VT-RBU</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="pilot-weight">Pilot Weight (kgs)</label>
+            <input type="number" id="pilot-weight" placeholder="Enter weight">
+        </div>
+
+        <div>
+            <label for="copilot-weight">Copilot Weight (kgs)</label>
+            <input type="number" id="copilot-weight" placeholder="Enter weight">
+        </div>
+
+        <div>
+            <label for="fuel-weight">Fuel Weight (liters)</label>
+            <input type="number" id="fuel-weight" placeholder="Enter liters">
+        </div>
+
+        <button id="calculate-button">Calculate</button>
+
+        <h2>Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
