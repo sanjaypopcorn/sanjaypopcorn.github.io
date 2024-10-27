@@ -7,49 +7,81 @@ const aircraftData = {
     "VT-RBR": { weight: 432.45, arm: 1.892 },
     "VT-RFG": { weight: 431.45, arm: 1.892 },
     "VT-RBS": { weight: 433.45, arm: 1.892 },
-    "VT-RBU": { weight: 431.45, arm: 1.892 }
+    "VT-RBU": { weight: 431.45, arm: 1.892 },
+    "VT-CAQ": { weight: 849.27, arm: 103.81 },
+    "VT-CAY": { weight: 837.5, arm: 105.55 },
 };
 
-const pilotArm = 1.8;
-const copilotArm = 1.8;
-const fuelArm = 2.209;
+// Default arms for Tecnam P2008JC
+const defaultPilotArm = 1.8;
+const defaultCopilotArm = 1.8;
+const defaultFuelArm = 2.209;
 
 document.getElementById('calculate-button').addEventListener('click', calculate);
 
 function calculate() {
-    const selectedAircraft = document.getElementById('aircraft-select').value;
-    const pilotWeight = parseFloat(document.getElementById('pilot-weight').value);
-    const copilotWeight = parseFloat(document.getElementById('copilot-weight').value);
-    const fuelLiters = parseFloat(document.getElementById('fuel-weight').value);
-    const fuelWeight = fuelLiters * 0.72;
+    try {
+        const selectedAircraft = document.getElementById('aircraft-select').value;
+        if (!selectedAircraft || !aircraftData[selectedAircraft]) {
+            throw new Error("Please select a valid aircraft.");
+        }
 
-    if (!selectedAircraft || isNaN(pilotWeight) || isNaN(copilotWeight) || isNaN(fuelLiters)) {
-        alert("Please fill in all fields with valid values.");
-        return;
+        const aircraft = selectedAircraft;
+        const isCessna = ["VT-CAY", "VT-CAQ"].includes(aircraft);
+        const aircraftWeight = aircraftData[aircraft].weight;
+        const aircraftArm = aircraftData[aircraft].arm;
+        const aircraftMoment = aircraftWeight * aircraftArm;
+
+        // Set arms based on aircraft type
+        const pilotArm = isCessna ? 93.98 : defaultPilotArm;
+        const copilotArm = isCessna ? 93.98 : defaultCopilotArm;
+        const fuelArm = isCessna ? 121.92 : defaultFuelArm;
+
+        // Parse inputs, check for NaN
+        const pilotWeight = parseFloat(document.getElementById("pilot-weight").value) || 0;
+        const copilotWeight = parseFloat(document.getElementById("copilot-weight").value) || 0;
+        const fuelLiters = parseFloat(document.getElementById("fuel-weight").value) || 0;
+
+        if (isNaN(pilotWeight) || isNaN(copilotWeight) || isNaN(fuelLiters)) {
+            throw new Error("Please enter valid weights.");
+        }
+
+        // Use appropriate fuel multiplier based on aircraft type
+        const fuelMultiplier = isCessna ? 0.84 : 0.72;
+        const fuelWeight = fuelLiters * fuelMultiplier;
+
+        const pilotMoment = pilotWeight * pilotArm;
+        const copilotMoment = copilotWeight * copilotArm;
+        const fuelMoment = fuelWeight * fuelArm;
+
+        const totalWeight = aircraftWeight + pilotWeight + copilotWeight + fuelWeight;
+        const totalMoment = aircraftMoment + pilotMoment + copilotMoment + fuelMoment;
+        const cg = totalMoment / totalWeight;
+
+        // If Cessna, calculate additional Max All Up Weight and Moment
+        let maxAllUpWeight, maxAllUpMoment, cessnaCG;
+        if (isCessna) {
+            maxAllUpWeight = totalWeight - 1;
+            maxAllUpMoment = totalMoment - 121.92;
+            cessnaCG = maxAllUpMoment / maxAllUpWeight;
+        }
+
+        // Update the results display
+        document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraftWeight.toFixed(2)}</td><td>${aircraftArm}</td><td>${aircraftMoment.toFixed(2)}</td>`;
+        document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${pilotArm}</td><td>${pilotMoment.toFixed(2)}</td>`;
+        document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${copilotArm}</td><td>${copilotMoment.toFixed(2)}</td>`;
+        document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${fuelArm}</td><td>${fuelMoment.toFixed(2)}</td>`;
+        
+        // For total results (footer row)
+        let totalResults = `<td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(2)}</td>`;
+        if (isCessna) {
+            totalResults += `<tr><td colspan="4">Cessna Specific Results: Max All Up Weight: ${maxAllUpWeight.toFixed(2)} kgs, Max All Up Moment: ${maxAllUpMoment.toFixed(2)}, CG: ${cessnaCG.toFixed(3)} m</td></tr>`;
+        } else {
+            totalResults += `<tr><td colspan="4">CG: ${cg.toFixed(3)} m</td></tr>`;
+        }
+        document.getElementById("totalResult").innerHTML = totalResults;
+        
+    } catch (e) {
+        document.getElementById("totalResult").innerText = e.message;
     }
-
-    const aircraft = aircraftData[selectedAircraft];
-    const aircraftWeight = aircraft.weight;
-    const aircraftArm = aircraft.arm;
-    const aircraftMoment = aircraftWeight * aircraftArm;
-
-    const pilotMoment = pilotWeight * pilotArm;
-    const copilotMoment = copilotWeight * copilotArm;
-    const fuelMoment = fuelWeight * fuelArm;
-
-    const totalWeight = aircraftWeight + pilotWeight + copilotWeight + fuelWeight;
-    const totalMoment = aircraftMoment + pilotMoment + copilotMoment + fuelMoment;
-    const cg = totalMoment / totalWeight;
-
-    const results = `
-        <p>Aircraft -> Weight: ${aircraftWeight} kgs, Arm: ${aircraftArm} m, Moment: ${aircraftMoment}</p>
-        <p>Pilot -> Weight: ${pilotWeight} kgs, Arm: ${pilotArm} m, Moment: ${pilotMoment}</p>
-        <p>Copilot -> Weight: ${copilotWeight} kgs, Arm: ${copilotArm} m, Moment: ${copilotMoment}</p>
-        <p>Fuel -> Weight: ${fuelWeight.toFixed(2)} kgs, Arm: ${fuelArm} m, Moment: ${fuelMoment.toFixed(4)}</p>
-        <p>Total Weight: ${totalWeight} kgs</p>
-        <p>Total Moment: ${totalMoment.toFixed(2)}</p>
-        <p>CG: ${cg.toFixed(3)} m</p>
-    `;
-    
-    document.getElementById('results').innerHTML = results;
 }

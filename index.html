@@ -22,6 +22,9 @@
                 <option value="VT-RFG">VT-RFG</option>
                 <option value="VT-RBS">VT-RBS</option>
                 <option value="VT-RBU">VT-RBU</option>
+                <option value="VT-CAQ">VT-CAQ</option> <!-- Added Cessna -->
+                <option value="VT-CAY">VT-CAY</option>
+
             </select>
         </div>
 
@@ -43,7 +46,27 @@
         <button id="calculate-button">Calculate</button>
 
         <h2>Results</h2>
-        <div id="results"></div>
+        <div id="results">
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Weight (kgs)</th>
+                        <th>Arm (m)</th>
+                        <th>Moment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="aircraftResult"></tr>
+                    <tr id="pilotResult"></tr>
+                    <tr id="copilotResult"></tr>
+                    <tr id="fuelResult"></tr>
+                </tbody>
+                <tfoot>
+                    <tr id="totalResult"></tr>
+                </tfoot>
+            </table>
+        </div>        
     </div>
 
     <script src="script.js"></script>

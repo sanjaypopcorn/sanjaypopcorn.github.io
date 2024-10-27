@@ -1,48 +1,77 @@
 body {
-    background-color: #1C1C1E;
-    color: white;
-    font-family: Arial, sans-serif;
+    background-color: #1C1C1E; /* Dark background */
+    color: white; /* Text color */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* iOS font stack */
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
+    max-width: 600px; /* Max width for the container */
+    margin: auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
 }
 
 h1, h2 {
-    text-align: center;
+    text-align: center; /* Center align headings */
 }
 
+/* Style for select inputs and text fields */
 select, input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #333;
-    background-color: #2C2C2E;
-    color: white;
+    width: 100%; /* Full width */
+    padding: 15px; /* More padding for a better touch target */
+    margin-bottom: 20px; /* Space below inputs */
+    border-radius: 10px; /* Rounded corners */
+    border: none; /* Remove border */
+    background-color: #2C2C2E; /* Dark background for inputs */
+    color: white; /* Text color */
+    font-size: 16px; /* Font size */
 }
 
+/* Button styles */
 button {
-    background-color: #0A84FF;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
+    background-color: #0A84FF; /* Blue background */
+    color: white; /* Text color */
+    padding: 15px; /* Padding for buttons */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Full width */
+    font-size: 18px; /* Larger font size */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
+/* Hover effect for buttons */
 button:hover {
-    background-color: #007AFF;
+    background-color: #007AFF; /* Darker blue on hover */
 }
 
+/* Style for results section */
 #results {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #2A2A2E;
-    border-radius: 5px;
+    margin-top: 20px; /* Space above results */
+    padding: 20px; /* Padding inside results */
+    background-color: #2A2A2E; /* Dark background for results */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Table styles */
+#results-table {
+    width: 100%; /* Full width for the table */
+    border-collapse: collapse; /* Collapse borders */
+    margin-top: 1em; /* Space above the table */
+}
+
+/* Styles for table borders and cell padding */
+#results-table, #results-table th, #results-table td {
+    border: 1px solid #444; /* Darker border for table */
+    padding: 10px; /* Padding inside table cells */
+    text-align: center; /* Center align text */
+}
+
+/* Header style for the table */
+#results-table th {
+    background-color: #3A3A3C; /* Dark header background */
+    color: white; /* Header text color */
+    font-weight: bold; /* Bold font for headers */
+    border-bottom: 2px solid #444; /* Distinct bottom border */
 }
