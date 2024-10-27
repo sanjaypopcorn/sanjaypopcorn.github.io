@@ -75,7 +75,7 @@ function calculate() {
         // For total results (footer row)
         let totalResults = `<td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(2)}</td>`;
         if (isCessna) {
-            totalResults += `<tr><td colspan="4">Cessna Specific Results: Max All Up Weight: ${maxAllUpWeight.toFixed(2)} kgs, Max All Up Moment: ${maxAllUpMoment.toFixed(2)}, CG: ${cessnaCG.toFixed(3)} m</td></tr>`;
+            totalResults += `<tr><td colspan="4">Max AUW: ${maxAllUpWeight.toFixed(2)} kgs, Total Moment: ${maxAllUpMoment.toFixed(2)}, CG: ${cessnaCG.toFixed(3)} m</td></tr>`;
         } else {
             totalResults += `<tr><td colspan="4">CG: ${cg.toFixed(3)} m</td></tr>`;
         }
