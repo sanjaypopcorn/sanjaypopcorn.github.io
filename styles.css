@@ -54,11 +54,18 @@ button:hover {
     border-radius: 10px; /* Rounded corners */
 }
 
+/* Scrollable table container */
+.table-container {
+    max-width: 100%; /* Ensure it fits within the container */
+    overflow-x: auto; /* Enable horizontal scrolling */
+}
+
 /* Table styles */
 #results-table {
     width: 100%; /* Full width for the table */
     border-collapse: collapse; /* Collapse borders */
     margin-top: 1em; /* Space above the table */
+    min-width: 500px; /* Minimum width to prevent squishing on small screens */
 }
 
 /* Styles for table borders and cell padding */

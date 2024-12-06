@@ -33,7 +33,6 @@
                 <option value="VT-RBU">VT-RBU</option>
                 <option value="VT-CAQ">VT-CAQ</option> <!-- Added Cessna -->
                 <option value="VT-CAY">VT-CAY</option>
-
             </select>
         </div>
 
@@ -55,7 +54,7 @@
         <button id="calculate-button">Calculate</button>
 
         <h2>Results</h2>
-        <div id="results">
+        <div id="results" class="table-container">
             <table id="results-table">
                 <thead>
                     <tr>
@@ -70,6 +69,7 @@
                     <tr id="pilotResult"></tr>
                     <tr id="copilotResult"></tr>
                     <tr id="fuelResult"></tr>
+                    <tr id="cessnaSpecificResult"></tr> <!-- For Cessna results -->
                 </tbody>
                 <tfoot>
                     <tr id="totalResult"></tr>
