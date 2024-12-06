@@ -67,10 +67,10 @@ function calculate() {
         }
 
         // Update the results display
-        document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraftWeight.toFixed(2)}</td><td>${aircraftArm}</td><td>${aircraftMoment.toFixed(2)}</td>`;
+        document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraftWeight.toFixed(2)}</td><td>${aircraftArm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
         document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${pilotArm}</td><td>${pilotMoment.toFixed(2)}</td>`;
         document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${copilotArm}</td><td>${copilotMoment.toFixed(2)}</td>`;
-        document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${fuelArm}</td><td>${fuelMoment.toFixed(2)}</td>`;
+        document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${fuelArm}</td><td>${fuelMoment.toFixed(4)}</td>`;
         
         // For total results (footer row)
         let totalResults = `<td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(2)}</td>`;
