@@ -8,6 +8,8 @@ const aircraftData = {
     "VT-RFG": { weight: 431.45, arm: 1.892 },
     "VT-RBS": { weight: 433.45, arm: 1.892 },
     "VT-RBU": { weight: 431.45, arm: 1.892 },
+    "VT-RBJ": { weight: 427.45, arm: 1.84 },
+    "VT-RFZ": { weight: 434.0, arm: 1.857 },
     "VT-CAQ": { weight: 849.27, arm: 103.81 },
     "VT-CAY": { weight: 837.5, arm: 105.55 },
 };
