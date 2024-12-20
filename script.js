@@ -59,7 +59,19 @@ function calculate() {
 
         const totalWeight = aircraftWeight + pilotWeight + copilotWeight + fuelWeight;
         const totalMoment = aircraftMoment + pilotMoment + copilotMoment + fuelMoment;
-        const cg = totalMoment / totalWeight;
+
+        let displayedCG;
+        let cessnaAUWMessage = "";
+
+        if (fuelMultiplier === 0.84) { // Check if it's a Cessna aircraft
+            const maxAllUpWeight = totalWeight - 1;
+            const maxAllUpMoment = totalMoment - 121.92;
+            const cessnaCG = maxAllUpMoment / maxAllUpWeight;
+            displayedCG = `CG: ${cessnaCG.toFixed(3)}cm, Max AUW: ${maxAllUpWeight.toFixed(2)} kgs, Total Moment: ${maxAllUpMoment.toFixed(4)} ` ;
+        } else {
+            const cg = totalMoment / totalWeight;
+            displayedCG = `CG: ${cg.toFixed(3)} m`;
+        }
 
         // Update the results display
         document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraftWeight.toFixed(2)}</td><td>${aircraftArm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
@@ -70,9 +82,10 @@ function calculate() {
         // For total results (footer row)
         document.getElementById("totalResult").innerHTML = `
             <td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>
-            <tr><td colspan="4">CG: ${cg.toFixed(3)} m</td></tr>`;
+            <tr><td colspan="4">${displayedCG}</td></tr>`;
         
     } catch (e) {
         document.getElementById("totalResult").innerText = e.message;
     }
 }
+
