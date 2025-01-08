@@ -1,4 +1,5 @@
 const aircraftData = {
+    //JC
     "VT-RIA": { weight: 432.45, arm: 1.843, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72 },
     "VT-RIB": { weight: 433.45, arm: 1.85, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72 },
     "VT-RBD": { weight: 435.2, arm: 1.856, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72 },
@@ -10,16 +11,18 @@ const aircraftData = {
     "VT-RBU": { weight: 431.45, arm: 1.892, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72 },
     "VT-RBJ": { weight: 427.45, arm: 1.84, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72 },
     "VT-RFZ": { weight: 434.0, arm: 1.857, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72 },
-    "VT-RFH": { weight: 453.45, arm: 1.738, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
-    "VT-RFI": { weight: 454.45, arm: 1.726, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
-    "VT-RFJ": { weight: 454.45, arm: 1.73, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
-    "VT-RFK": { weight: 460.45, arm: 1.74, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
-    "VT-RFL": { weight: 454.45, arm: 1.73, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
-    "VT-RFS": { weight: 458.4, arm: 1.726, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
-    "VT-RFO": { weight: 457.1, arm: 1.725, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72},
+    //P-Mentor
+    "VT-RFH": { weight: 453.45, arm: 1.738, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFI": { weight: 454.45, arm: 1.726, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFJ": { weight: 454.45, arm: 1.73, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFK": { weight: 460.45, arm: 1.74, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFL": { weight: 454.45, arm: 1.73, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFS": { weight: 458.4, arm: 1.726, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFO": { weight: 457.1, arm: 1.725, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    "VT-RFN": { weight: 456.4, arm: 1.728, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72},
+    //Cessna
     "VT-CAQ": { weight: 849.27, arm: 103.81, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84 },
     "VT-CAY": { weight: 837.5, arm: 105.55, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84 },
-    // Add new aircraft here easily
 };
 
 document.getElementById('calculate-button').addEventListener('click', calculate);
