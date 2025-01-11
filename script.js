@@ -1,3 +1,12 @@
+$(document).ready(function() {
+    $('#aircraft-select').select2({
+        placeholder: "--Select an Aircraft--",
+        allowClear: true,
+        width: '100%',
+        theme: 'default'
+    });
+});
+
 const aircraftData = {
     //JC
     "VT-RIA": { weight: 432.45, arm: 1.843, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },

@@ -82,3 +82,63 @@ button:hover {
     font-weight: bold; /* Bold font for headers */
     border-bottom: 2px solid #444; /* Distinct bottom border */
 }
+
+/* Select2 Custom Styles */
+.select2-container--default .select2-selection--single {
+    background-color: #2C2C2E !important;
+    border: none !important;
+    border-radius: 10px !important;
+    height: 54px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    overflow: visible !important; /* Override to prevent clipping */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: white !important;
+    line-height: 34px !important;
+    padding-left: 15px !important;
+    overflow: visible !important; /* Override to prevent clipping */
+
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 54px !important;
+}
+
+.select2-dropdown {
+    background-color: #2C2C2E !important;
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+.select2-container--default .select2-results__option {
+    color: white !important;
+    padding: 10px 15px !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #0A84FF !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    background-color: #3A3A3C !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 8px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #999 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__clear {
+    display: none !important;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-dropdown {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 16px; /* Match your input font size */
+}
