@@ -15,7 +15,7 @@ const aircraftData = {
     "VT-RFZ": { weight: 434.0, arm: 1.857, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" }, 
     "VT-RBV": { weight: 431.45, arm: 1.84, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },//Seoni
     "VT-RBW": { weight: 432.45, arm: 1.84, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
-    "VT-RBE": { weight: 433.45, arm: 1.892, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
+    "VT-RFE": { weight: 433.45, arm: 1.892, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
     "VT-RFF": { weight: 431.45, arm: 1.892, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
     //P-Mentor
     "VT-RFH": { weight: 453.45, arm: 1.738, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
@@ -72,7 +72,7 @@ function calculate() {
         let displayedCG;
         let cessnaAUWMessage = "";
 
-        if (aircraft.type === "cessna") { // Check if it's a Cessna aircraft
+        if (aircraft.type === "cessna") { // Cessna specific calculations
             const maxAllUpWeight = totalWeight - 1;
             const maxAllUpMoment = totalMoment - 121.92;
             const cessnaCG = maxAllUpMoment / maxAllUpWeight;
