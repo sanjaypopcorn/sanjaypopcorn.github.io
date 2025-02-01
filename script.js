@@ -1,5 +1,5 @@
 const aircraftData = {
-    //JC
+    //P2008JC
     "VT-RIA": { weight: 432.45, arm: 1.843, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
     "VT-RIB": { weight: 433.45, arm: 1.85, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
     "VT-RBD": { weight: 435.2, arm: 1.856, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
@@ -73,7 +73,7 @@ function handleP2008JC(aircraft) {
     const pilotMoment = pilotWeight*1.8;
     const copilotMoment = copilotWeight*1.8;
 
-    const fuelWeight = fuelLiters * aircraft.fuelMultiplier;
+    const fuelWeight = fuelLiters * 0.72;
 
     const totalWeight = aircraft.weight + pilotWeight + copilotWeight + fuelWeight;
     const totalMoment = aircraftMoment + pilotMoment + copilotMoment + fuelMoment;
@@ -164,9 +164,9 @@ function handleCessna(aircraft) {
 
     // Update the results display
     document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraft.weight.toFixed(2)}</td><td>${aircraft.arm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
-    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${aircraft.pilotArm}</td><td>${pilotMoment.toFixed(2)}</td>`;
-    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${aircraft.copilotArm}</td><td>${copilotMoment.toFixed(2)}</td>`;
-    document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${aircraft.fuelArm}</td><td>${fuelMoment.toFixed(4)}</td>`;
+    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${93.98}</td><td>${pilotMoment.toFixed(2)}</td>`;
+    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${93.98}</td><td>${copilotMoment.toFixed(2)}</td>`;
+    document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${121.92}</td><td>${fuelMoment.toFixed(4)}</td>`;
 
     // For total results (footer row)
     document.getElementById("totalResult").innerHTML = `
