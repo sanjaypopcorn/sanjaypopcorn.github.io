@@ -38,22 +38,26 @@ body {
     color: #666;
     opacity: 0.8;
     padding: 10px;
-    position: absolute;
-    bottom: 10px;
+    background-color: var(--color-input-bg); /* Matches theme */
     width: 100%;
+    position: relative; /* Fixes overlap issue */
+    bottom: 0;
 }
+
 .footer a {
     color: #666;
     text-decoration: none;
 }
+
 .footer a:hover {
     text-decoration: underline;
 }
 
 .container {
-    max-width: 600px; /* Maximum width for the container */
-    margin: 0 auto; /* Center the container */
-    padding: 1.25rem; /* Padding around the container */
+    flex: 1; /* Pushes footer to the bottom */
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.25rem;
 }
 
 h1, h2 {
