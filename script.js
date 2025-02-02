@@ -30,6 +30,9 @@ const aircraftData = {
     //Cessna
     "VT-CAQ": { weight: 849.27, arm: 103.81, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     "VT-CAY": { weight: 837.5, arm: 105.55, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
+    //P2010
+    "VT-RFT": { weight: 819.14, arm: 0.298, type: "p2010"},
+    "VT-RFU": { weight: 816.17, arm: 0.289, type: "p2010"}
 };
 
 document.getElementById('calculate-button').addEventListener('click', calculate);
@@ -49,6 +52,8 @@ function calculate() {
             handlePMentor(aircraft);
         } else if (aircraft.type === "cessna") {
             handleCessna(aircraft);
+        } else if (aircraft.type === "p2010") {
+            handleP2010(aircraft);
         } else {
             throw new Error("Unsupported aircraft type.");
         }
@@ -179,6 +184,92 @@ function handleP2006T(aircraft) {
     //TODO implement this
 }
 
-function handleP2010(aircrat) {
+function handleP2010(aircraft) {
     //TODO implement this
+
+    // Parse inputs, check for NaN
+    const pilotWeight = parseFloat(document.getElementById("pilot-weight").value) || 0;
+    const copilotWeight = parseFloat(document.getElementById("copilot-weight").value) || 0;
+    const tofuelLiters = parseFloat(document.getElementById("fuel-weight").value) || 0;
+    const ldgfuelLiters = parseFloat(document.getElementById("landing-fuel").value) || 0;
+    
+    if (isNaN(pilotWeight) || isNaN(copilotWeight) || isNaN(tofuelLiters)) {
+        throw new Error("Please enter valid weights.");
+    }
+
+    const aircraftMoment = aircraft.weight*aircraft.arm;
+    const pilotMoment = pilotWeight*0.29;
+    const copilotMoment = copilotWeight*0.29;
+    const dryWeight = aircraft.weight + pilotWeight + copilotWeight; 
+    const dryMoment = aircraftMoment + pilotMoment + copilotMoment;
+    const dryArm = dryMoment / dryWeight;
+    const tofuelWeight = tofuelLiters*0.8;
+    const ldgfuelWeight = ldgfuelLiters*0.8;
+    const tofuelMoment = tofuelWeight*0.625;
+    const ldgfuelMoment = ldgfuelWeight*0.625;
+
+    let baggageWeight = 0;
+    let baggageMoment;
+    let takeoffCG, landingCG;
+    let takeoffWeight, landingWeight;
+    let takeoffMoment, landingMoment;
+
+    while (true) {
+        baggageMoment = baggageWeight * 1.612;
+        takeoffWeight = dryWeight + tofuelWeight + baggageWeight;
+        landingWeight = dryWeight + ldgfuelWeight + baggageWeight;
+        takeoffMoment = dryMoment + tofuelMoment + baggageMoment;
+        landingMoment = dryMoment + ldgfuelMoment + baggageMoment;
+        takeoffCG = takeoffMoment / takeoffWeight;
+        landingCG = landingMoment / landingWeight;
+
+        // Define CG limits based on weight
+        let lowerLimit = (takeoffWeight > 1000) ? 0.351 : 0.275;
+        let upperLimit = 0.454;
+
+        // Check if both CG values are within limits
+        if (takeoffCG >= lowerLimit && takeoffCG <= upperLimit &&
+            landingCG >= lowerLimit && landingCG <= upperLimit) {
+            break; // Exit loop if both takeoff and landing CG are in range
+        }
+
+        // If we reach an unreasonable baggage weight, stop loop
+        if (baggageWeight > 40) {
+            console.error("Unable to balance CG within reasonable baggage weight.");
+            break;
+        }
+
+        baggageWeight += 10; // Increment baggage by 10kg
+    }
+
+    //Update the results display
+    document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraft.weight.toFixed(2)}</td><td>${aircraft.arm}</td><td>${aircraftMoment.toFixed(3)}</td>`;
+    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight}</td><td>${0.29}</td><td>${pilotMoment.toFixed(2)}</td>`;
+    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight}</td><td>${0.29}</td><td>${copilotMoment.toFixed(2)}</td>`;
+    document.getElementById("dryweightResult").innerHTML = `<td>Dry Weight</td><td>${dryWeight.toFixed(2)}</td><td>${dryArm.toFixed(3)}</td><td>${dryMoment.toFixed(3)}</td>`;
+    document.getElementById("takeofffuelResult").innerHTML = `<td>T/O Fuel</td><td>${tofuelWeight.toFixed(2)}</td><td>${0.625}</td><td>${tofuelMoment.toFixed(3)}</td>`;
+    document.getElementById("landingfuelResult").innerHTML = `<td>Ldg Fuel</td><td>${ldgfuelWeight.toFixed(2)}</td><td>${0.625}</td><td>${ldgfuelMoment.toFixed(3)}</td>`;
+    document.getElementById("baggageResult").innerHTML = `<td>Baggage</td><td>${baggageWeight}</td><td>${1.612}</td><td>${baggageMoment.toFixed(2)}</td>`;
+    document.getElementById("takeoffResult").innerHTML = `<td>T/O AUW</td><td>${takeoffWeight.toFixed(2)}</td><td>T/O Moment</td><td>${takeoffMoment.toFixed(3)}</td>`;
+    document.getElementById("landingResult").innerHTML = `<td>LDG AUW</td><td>${landingWeight.toFixed(2)}</td><td>LDG Moment</td><td>${landingMoment.toFixed(3)}</td>`;
+    document.getElementById("totalResult").innerHTML = `<td>T/O CG</td><td>${takeoffCG.toFixed(3)}</td><td>LDG CG</td><td>${landingCG.toFixed(3)}</td>`;
+
+
 }
+
+document.getElementById('aircraft-select').addEventListener('change', function() {
+    const selectedAircraft = this.value;
+
+    const aircraft = aircraftData[selectedAircraft];
+    
+    // Get the P2010 fuel inputs container
+    const p2010FuelInputs = document.getElementById('p2010-fuel-inputs');
+
+    if (aircraft.type === 'p2010') {
+        // Show the fuel inputs for P2010 aircraft
+        p2010FuelInputs.style.display = 'block';
+    } else {
+        // Hide the fuel inputs for other aircraft
+        p2010FuelInputs.style.display = 'none';
+    }
+});
