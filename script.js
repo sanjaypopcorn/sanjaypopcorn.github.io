@@ -31,8 +31,12 @@ const aircraftData = {
     "VT-CAQ": { weight: 849.27, arm: 103.81, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     "VT-CAY": { weight: 837.5, arm: 105.55, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     //P2010
-    "VT-RFT": { weight: 819.14, arm: 0.298, type: "p2010"},
-    "VT-RFU": { weight: 816.17, arm: 0.289, type: "p2010"}
+    "VT-RFT": { weight: 819.14, arm: 0.298, type: "p2010" },
+    "VT-RFU": { weight: 816.17, arm: 0.289, type: "p2010" },
+    //P2006T
+    "VT-RIC": { weight: 0, arm: 0, type: "p2006t" },
+    "VT-RBB": { weight: 0, arm: 0, type: "p2006t" },
+    "VT-RFW": { weight: 0, arm: 0, type: "p2006t" }
 };
 
 document.getElementById('calculate-button').addEventListener('click', calculate);
@@ -97,8 +101,9 @@ function handleP2008JC(aircraft) {
 
     // For total results (footer row)
     document.getElementById("totalResult").innerHTML = `
-        <td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>
-        <tr><td colspan="4">${displayedCG}</td></tr>`;
+        <td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td></tr>`;
+        //  <tr><td colspan="4">${displayedCG}</td></tr>`;
+    document.getElementById("cgResult").innerHTML = `<td></td><td></td><td></td<td></td><td>${displayedCG}</td>`;
 
 }
 
@@ -136,8 +141,8 @@ function handlePMentor(aircraft) {
 
     // For total results (footer row)
     document.getElementById("totalResult").innerHTML = `
-    <td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>
-    <tr><td colspan="4">${displayedCG}</td></tr>`;
+    <td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>`;
+    document.getElementById("cgResult").innerHTML = `<td></td><td></td><td></td<td></td><td>${displayedCG}</td>`;
 }
 
 function handleCessna(aircraft) {
@@ -166,26 +171,35 @@ function handleCessna(aircraft) {
     const maxAllUpWeight = totalWeight - 1;
     const maxAllUpMoment = totalMoment - 121.92;
     const cessnaCG = maxAllUpMoment / maxAllUpWeight;
-    displayedCG = `CG: ${cessnaCG.toFixed(3)}cm, Max AUW: ${maxAllUpWeight.toFixed(2)} kgs, Total Moment: ${maxAllUpMoment.toFixed(4)} ` ;
+    displayedCG = `CG: ${cessnaCG.toFixed(3)}cm`;
 
     // Update the results display
     document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraft.weight.toFixed(2)}</td><td>${aircraft.arm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
     document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${93.98}</td><td>${pilotMoment.toFixed(2)}</td>`;
     document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${93.98}</td><td>${copilotMoment.toFixed(2)}</td>`;
-    document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${121.92}</td><td>${fuelMoment.toFixed(4)}</td>`;
+    document.getElementById("cessnaFuel").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${121.92}</td><td>${fuelMoment.toFixed(4)}</td>`;
 
     // For total results (footer row)
-    document.getElementById("totalResult").innerHTML = `
-        <td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>
-        <tr><td colspan="4">${displayedCG}</td></tr>`;
+    document.getElementById("totalResult").innerHTML = `<td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>`;
+
+    document.getElementById("cessnaSpecificResult").innerHTML = `<td>Max AUW</td><td>${maxAllUpWeight.toFixed(2)}</td><td></td><td>${maxAllUpMoment.toFixed(4)}</td>`;
+    document.getElementById("cgResult").innerHTML = `<td></td><td></td><td></td<td></td><td>${displayedCG}</td>`;
 }
 
 function handleP2006T(aircraft) {
-    //TODO implement this
+    // Parse inputs, check for NaN
+    const pilotWeight = parseFloat(document.getElementById("pilot-weight").value) || 0;
+    const copilotWeight = parseFloat(document.getElementById("copilot-weight").value) || 0;
+    const fuelLiters = parseFloat(document.getElementById("fuel-weight").value) || 0;
+    
+    if (isNaN(pilotWeight) || isNaN(copilotWeight) || isNaN(fuelLiters)) {
+        throw new Error("Please enter valid weights.");
+    }
+
+    //s
 }
 
 function handleP2010(aircraft) {
-    //TODO implement this
 
     // Parse inputs, check for NaN
     const pilotWeight = parseFloat(document.getElementById("pilot-weight").value) || 0;
