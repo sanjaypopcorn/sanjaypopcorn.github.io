@@ -19,14 +19,14 @@ const aircraftData = {
     "VT-RFE": { weight: 433.45, arm: 1.892, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
     "VT-RFF": { weight: 431.45, arm: 1.892, pilotArm: 1.8, copilotArm: 1.8, fuelArm: 2.209, fuelMultiplier: 0.72, type: "p2008jc" },
     //P-Mentor
-    "VT-RFH": { weight: 453.45, arm: 1.738, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFI": { weight: 454.45, arm: 1.726, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFJ": { weight: 454.45, arm: 1.73, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFK": { weight: 460.45, arm: 1.74, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFL": { weight: 454.45, arm: 1.73, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFS": { weight: 458.4, arm: 1.726, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFO": { weight: 457.1, arm: 1.725, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
-    "VT-RFN": { weight: 456.4, arm: 1.728, pilotArm: 1.804, copilotArm: 1.804, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFH": { weight: 453.45, arm: 1.738, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFI": { weight: 454.45, arm: 1.726, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFJ": { weight: 454.45, arm: 1.73, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFK": { weight: 460.45, arm: 1.74, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFL": { weight: 454.45, arm: 1.73, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFS": { weight: 458.4, arm: 1.726, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFO": { weight: 457.1, arm: 1.725, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
+    "VT-RFN": { weight: 456.4, arm: 1.728, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
     //Cessna
     "VT-CAQ": { weight: 849.27, arm: 103.81, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     "VT-CAY": { weight: 837.5, arm: 105.55, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
@@ -120,8 +120,8 @@ function handlePMentor(aircraft) {
     
     const aircraftMoment = aircraft.weight*aircraft.arm;
     const fuelMoment = fuelLiters*0.72*2.139
-    const pilotMoment = pilotWeight*1.94;
-    const copilotMoment = copilotWeight*1.94;
+    const pilotMoment = pilotWeight*1.804;
+    const copilotMoment = copilotWeight*1.804;
 
     const fuelWeight = fuelLiters * 0.72;
 
@@ -135,8 +135,8 @@ function handlePMentor(aircraft) {
 
     // Update the results display
     document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraft.weight.toFixed(2)}</td><td>${aircraft.arm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
-    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${1.94}</td><td>${pilotMoment.toFixed(2)}</td>`;
-    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${1.94}</td><td>${copilotMoment.toFixed(2)}</td>`;
+    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${1.804}</td><td>${pilotMoment.toFixed(2)}</td>`;
+    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${1.804}</td><td>${copilotMoment.toFixed(2)}</td>`;
     document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${2.139}</td><td>${fuelMoment.toFixed(4)}</td>`;
 
     // For total results (footer row)
