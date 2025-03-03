@@ -120,8 +120,8 @@ function handlePMentor(aircraft) {
     
     const aircraftMoment = aircraft.weight*aircraft.arm;
     const fuelMoment = fuelLiters*0.72*2.139
-    const pilotMoment = pilotWeight*1.804;
-    const copilotMoment = copilotWeight*1.804;
+    const pilotMoment = pilotWeight*1.94;
+    const copilotMoment = copilotWeight*1.94;
 
     const fuelWeight = fuelLiters * 0.72;
 
@@ -135,8 +135,8 @@ function handlePMentor(aircraft) {
 
     // Update the results display
     document.getElementById("aircraftResult").innerHTML = `<td>Aircraft</td><td>${aircraft.weight.toFixed(2)}</td><td>${aircraft.arm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
-    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${1.804}</td><td>${pilotMoment.toFixed(2)}</td>`;
-    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${1.804}</td><td>${copilotMoment.toFixed(2)}</td>`;
+    document.getElementById("pilotResult").innerHTML = `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${1.94}</td><td>${pilotMoment.toFixed(2)}</td>`;
+    document.getElementById("copilotResult").innerHTML = `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${1.94}</td><td>${copilotMoment.toFixed(2)}</td>`;
     document.getElementById("fuelResult").innerHTML = `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${2.139}</td><td>${fuelMoment.toFixed(4)}</td>`;
 
     // For total results (footer row)
