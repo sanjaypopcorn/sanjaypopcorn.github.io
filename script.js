@@ -42,7 +42,15 @@ const aircraftData = {
     "VT-RFW": { weight: 855.95, arm: 0.459, type: "p2006t" }
 };
 
-document.getElementById('calculate-button').addEventListener('click', calculate);
+document.getElementById('calculate-button').addEventListener('click', function() {
+    if (typeof gtag === 'function') {
+        gtag('event', 'calculate_button_press', {
+            'event_category': 'engagement',
+            'non_interaction': false
+        });
+    }
+    calculate();
+});
 
 function calculate() {
     try {
@@ -67,8 +75,26 @@ function calculate() {
             throw new Error("Unsupported aircraft type.");
         }
 
+        // Send GA event for successful calculation
+        if (typeof gtag === 'function') {
+            gtag('event', 'calculate', {
+                'event_category': 'engagement',
+                'event_label': selectedAircraft,
+                'non_interaction': false
+            });
+        }
+
     } catch (e) {
         document.getElementById("totalResult").innerText = e.message;
+
+        // Send GA event for calculation error / invalid input
+        if (typeof gtag === 'function') {
+            gtag('event', 'calculate_error', {
+                'event_category': 'engagement',
+                'event_label': e.message,
+                'non_interaction': true
+            });
+        }
     }
 }
 
