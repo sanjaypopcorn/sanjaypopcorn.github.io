@@ -3,78 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Decommissioned</title>
+    <title>Load and Trim Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RFCB3RMDE"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-        gtag('config', 'G-1RFCB3RMDE');
-        gtag('event', 'page_view', {
-            page_title: 'Project Decommissioned',
-            page_location: window.location.href,
-            page_path: '/project-Decommissioned'
-        });
-        gtag('event', 'decommissioned_page_visit', {
-            page_title: 'Project Decommissioned',
-            page_path: '/project-Decommissioned',
-            page_state: 'decommissioned'
-        });
+    gtag('config', 'G-1RFCB3RMDE');
     </script>
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .decommissioned-page {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .decommissioned-message {
-            display: block;
-            background-color: var(--color-results-bg);
-            border: 1px solid var(--color-table-border);
-            border-radius: 10px;
-            padding: 2rem;
-            width: min(100%, 600px);
-            box-sizing: border-box;
-            color: inherit;
-            text-decoration: none;
-        }
-        
-        .decommissioned-message h1,
-        .decommissioned-message p {
-            margin: 0;
-        }
-        
-        .decommissioned-message p {
-            margin-top: 0.75rem;
-            font-size: 1.125rem;
-            color: #d0d0d0;
-        }
-        </style>
 </head>
 <body>
-    <main class="container decommissioned-page">
-        <a class="decommissioned-message" aria-label="Project status" href="https://pastebin.com/TcAm0rR6">
-            <h1>Project Decommissioned</h1>
-            <p>ab toh seekh le</p>
+    <div class="last-updated">Last updated: November 14, 2026</div> <!-- Update this date when you update the calculator --> 
+    <div class="container">
+        <h1>Load and Trim Calculator</h1>
+        <div>
+            <label for="aircraft-select">Select Aircraft</label>
+            <select id="aircraft-select">
+                <option value="">--Select an Aircraft--</option>
+        
+                <!-- <optgroup label="P-Mentor">
+                    <option value="VT-RFH">VT-RFH</option>
+                    <option value="VT-RFI">VT-RFI</option>
+                    <option value="VT-RFJ">VT-RFJ</option>
+                    <option value="VT-RFK">VT-RFK</option>
+                    <option value="VT-RFL">VT-RFL</option>
+                    <option value="VT-RFN">VT-RFN</option>
+                    <option value="VT-RFO">VT-RFO</option>
+                    <option value="VT-RFP">VT-RFP</option>
+                    <option value="VT-RFR">VT-RFR</option>
+                    <option value="VT-RFS">VT-RFS</option>
+                </optgroup> -->
+                
+                <!-- <optgroup label="P2008JC"> P2008JC
+                    <option value="VT-RIA">VT-RIA (RIP)</option>
+                    <option value="VT-RIB">VT-RIB</option>
+                    <option value="VT-RBD">VT-RBD</option>
+                    <option value="VT-RBI">VT-RBI</option>
+                    <option value="VT-RBJ">VT-RBJ (RIP)</option>
+                    <option value="VT-RBL">VT-RBL</option>
+                    <option value="VT-RBR">VT-RBR</option>
+                    <option value="VT-RBS">VT-RBS</option>
+                    <option value="VT-RBU">VT-RBU</option>
+                    <option value="VT-RBX">VT-RBX</option>
+                    <option value="VT-RBY">VT-RBY</option>
+                    <option value="VT-RFG">VT-RFG</option>
+                    <option value="VT-RFY">VT-RFY </option>
+                    <option value="VT-RFZ">VT-RFZ </option>
+                    <option value="VT-RBV">VT-RBV</option>
+                    <option value="VT-RBW">VT-RBW</option>
+                    <option value="VT-RFE">VT-RFE</option>
+                    <option value="VT-RFF">VT-RFF</option>
+                    <option value="VT-RBH">VT-RBH</option>
+                </optgroup> -->
+                
+                <optgroup label="Cessna"> <!-- Cessna -->
+                    <option value="VT-AGQ">VT-AGQ</option>
+                    <option value="VT-CAQ">VT-CAQ</option>
+                    <option value="VT-CAY">VT-CAY</option>
+                </optgroup>    
+
+                <optgroup label="P2010">
+                    <option value="VT-RFT">VT-RFT</option>
+                    <option value="VT-RFU">VT-RFU</option>
+                </optgroup>
+
+                <optgroup label="P2006T">
+                    <option value="VT-RFW">VT-RFW</option>
+                    <option value="VT-RIC">VT-RIC</option>
+                </optgroup>
+
+
+            </select>
+        </div>
+        
+
+        <div>
+            <label for="pilot-weight">Pilot Weight (kgs)</label>
+            <input type="number" id="pilot-weight" placeholder="Enter weight">
+        </div>
+
+        <div>
+            <label for="copilot-weight">Copilot Weight (kgs)</label>
+            <input type="number" id="copilot-weight" placeholder="Enter weight">
+        </div>
+
+        <div>
+            <label for="fuel-weight">Fuel (liters)</label>
+            <input type="number" id="fuel-weight" placeholder="Enter liters">
+        </div>
+
+        <div id="p2010-fuel-inputs" style="display: none;">
+            <div>
+                <label for="landing-fuel">Landing Fuel (liters)</label>
+                <input type="number" id="landing-fuel" placeholder="Enter landing fuel">
+            </div>
+        </div>
+
+        <div id="p2010-baggage-input" style="display: none;">
+            <div>
+                <label for="baggage-weight">Baggage</label>
+                <input type="number" id="baggage-weight" placeholder="30 kgs">
+            </div>
+        </div>        
+                
+        <button id="calculate-button">Calculate</button>
+
+        <h2>Results</h2>
+        <div id="results" class="table-container">
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Weight (kgs)</th>
+                        <th>Arm (m)</th>
+                        <th>Moment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="aircraftResult"></tr>
+                    <tr id="cessnaFuel"></tr> <!-- For Cessna -->
+                    <tr id="pilotResult"></tr>
+                    <tr id="copilotResult"></tr>
+                    <tr id="dryweightResult"></tr> <!-- For 2010 -->
+                    <tr id="takeofffuelResult"></tr> <!-- For 2010 -->
+                    <tr id="landingfuelResult"></tr> <!-- For 2010 -->
+                    <tr id="fuelResult"></tr>
+                    <tr id="baggageResult"></tr> <!-- For 2010 -->
+                    <tr id="takeoffResult"></tr> <!-- For 2010 -->
+                    <tr id="landingResult"></tr> <!-- For 2010 -->
+
+                </tbody>
+                <tfoot>
+                    <tr id="totalResult"></tr>
+                    <tr id="cessnaSpecificResult"></tr> <!-- For Cessna  -->
+                    <tr id="cgResult"></tr>
+                </tfoot>
+            </table>
+        </div>        
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        (function () {
+            var countdownBanner = document.getElementById('countdown-banner');
+            var targetTime = Date.parse('2026-04-13T00:30:00Z');
+
+            function pad(value) {
+                return String(value).padStart(2, '0');
+            }
+
+            function updateCountdown() {
+                var remaining = targetTime - Date.now();
+
+                var totalSeconds = Math.floor(remaining / 1000);
+                var hours = Math.floor(totalSeconds / 3600);
+                var minutes = Math.floor((totalSeconds % 3600) / 60);
+                var seconds = totalSeconds % 60;
+
+                countdownBanner.textContent = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+                return true;
+            }
+
+            if (updateCountdown()) {
+                var countdownInterval = setInterval(function () {
+                    if (!updateCountdown()) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+            }
+        }());
+    </script>
+    <!-- <div style="text-align: center; padding: 20px; background-color: #1C1C1E; margin-top: 40px;">
+    <h3>🎁 Support This Tool</h3>
+    <p>If this load & trim calculator has helped you, consider buying me a coffee ☕</p>
+    <img src="GooglePay_QR.png" alt="UPI QR Code" style="max-width: 200px; margin: 10px auto; display: block;" />
+    <p><strong>UPI ID:</strong>
+        <a href="upi://pay?pa=sanjay160403-3@okhdfcbank&pn=Sanjay%20Singh&cu=INR"
+        style="font-family: monospace; color: #0077cc; text-decoration: underline;">
+        sanjay160403-3@okhdfcbank
         </a>
-    </main>
-    
+    </p>
+    <p>Thank you! 🙏</p>
+    </div> -->
     <footer class="footer">
-        <p><a href="https://instagram.com/sanjaypopcorn" target="_blank">Sanjay Singh</a> |
-            <a href="mailto:sanjay160403@gmail.com?subject=Load and Trim Calculator Inquiry">Contact</a></p>
-        </footer>
-    </body>
-    </html>
-    
+        <p>Created by <a href="https://instagram.com/sanjaypopcorn" target="_blank">Sanjay Singh</a> | 
+        <a href="mailto:sanjay160403@gmail.com?subject=Load and Trim Calculator Inquiry">Contact</a></p>
+    </footer>    
+</body>
+</html>
