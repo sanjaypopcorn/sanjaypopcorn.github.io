@@ -32,6 +32,8 @@ const aircraftData = {
     "VT-RFN": { weight: 456.4, arm: 1.728, pilotArm: 1.940, copilotArm: 1.940, fuelArm: 2.139, fuelMultiplier: 0.72, type: "pmentor" },
     //Cessna
     "VT-AGQ": { weight: 761.8, arm: 1.06, pilotArm: 0.94, copilotArm: 0.94, fuelArm: 1.22, fuelMultiplier: 0.72, type: "arcacessna" },
+    "VT-AGO": { weight: 766.8, arm: 1.09, pilotArm: 0.94, copilotArm: 0.94, fuelArm: 1.22, fuelMultiplier: 0.72, type: "arcacessna" },
+    "VT-AGN": { weight: 759.8, arm: 1.07, pilotArm: 0.94, copilotArm: 0.94, fuelArm: 1.22, fuelMultiplier: 0.72, type: "arcacessna" },
     "VT-CAQ": { weight: 849.27, arm: 103.81, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     "VT-CAY": { weight: 837.5, arm: 105.55, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     //P2010
