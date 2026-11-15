@@ -37,6 +37,8 @@ const aircraftData = {
     "VT-CAQ": { weight: 849.27, arm: 103.81, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     "VT-CAY": { weight: 837.5, arm: 105.55, pilotArm: 93.98, copilotArm: 93.98, fuelArm: 121.92, fuelMultiplier: 0.84, type: "cessna" },
     //P2010
+    "VT-XID": { weight: 819.80, arm: 0.3097,pilotArm: 0.293, copilotArm: 0.293, fuelArm: 0.625, fuelMultiplier: 0.8, type: "arcap2010" },
+    "VT-XIE": { weight: 819.00, arm: 0.3143,pilotArm: 0.293, copilotArm: 0.293, fuelArm: 0.625, fuelMultiplier: 0.8, type: "arcap2010" },
     "VT-RFT": { weight: 819.14, arm: 0.298, type: "p2010" },
     "VT-RFU": { weight: 816.17, arm: 0.289, type: "p2010" },
     //P2006T
@@ -74,6 +76,8 @@ function calculate() {
             handleArcaCessna(aircraft);
         } else if (aircraft.type === "p2010") {
             handleP2010(aircraft);
+        } else if (aircraft.type === "arcap2010") {
+            handleArcaP2010(aircraft);
         } else if (aircraft.type === "p2006t") {
             handleP2006T(aircraft);
         } else {
@@ -353,6 +357,47 @@ function handleP2010(aircraft) {
     document.getElementById("totalResult").innerHTML = `<td>T/O CG</td><td>${takeoffCG.toFixed(3)}</td><td>LDG CG</td><td>${landingCG.toFixed(3)}</td>`;
 }
 
+function handleArcaP2010(aircraft) {
+
+    const pilotWeight = parseFloat(document.getElementById("pilot-weight").value) || 0;
+    const copilotWeight = parseFloat(document.getElementById("copilot-weight").value) || 0;
+    const fuelLiters = parseFloat(document.getElementById("fuel-weight").value) || 0;
+
+    if (isNaN(pilotWeight) || isNaN(copilotWeight) || isNaN(fuelLiters)) {
+        throw new Error("Please enter valid weights.");
+    }
+
+    const fuelWeight = fuelLiters * aircraft.fuelMultiplier;
+
+    const aircraftMoment = aircraft.weight * aircraft.arm;
+    const pilotMoment = pilotWeight * aircraft.pilotArm;
+    const copilotMoment = copilotWeight * aircraft.copilotArm;
+    const fuelMoment = fuelWeight * aircraft.fuelArm;
+
+    const totalWeight = aircraft.weight + pilotWeight + copilotWeight + fuelWeight;
+    const totalMoment = aircraftMoment + pilotMoment + copilotMoment + fuelMoment;
+
+    const cg = totalMoment / totalWeight;
+    const displayedCG = `CG: ${cg.toFixed(3)} m`;
+
+    document.getElementById("aircraftResult").innerHTML =
+        `<td>Aircraft</td><td>${aircraft.weight.toFixed(2)}</td><td>${aircraft.arm}</td><td>${aircraftMoment.toFixed(4)}</td>`;
+
+    document.getElementById("pilotResult").innerHTML =
+        `<td>Pilot</td><td>${pilotWeight.toFixed(2)}</td><td>${aircraft.pilotArm}</td><td>${pilotMoment.toFixed(2)}</td>`;
+
+    document.getElementById("copilotResult").innerHTML =
+        `<td>Copilot</td><td>${copilotWeight.toFixed(2)}</td><td>${aircraft.copilotArm}</td><td>${copilotMoment.toFixed(2)}</td>`;
+
+    document.getElementById("fuelResult").innerHTML =
+        `<td>Fuel</td><td>${fuelWeight.toFixed(2)}</td><td>${aircraft.fuelArm}</td><td>${fuelMoment.toFixed(4)}</td>`;
+
+    document.getElementById("totalResult").innerHTML =
+        `<td>Total</td><td>${totalWeight.toFixed(2)}</td><td></td><td>${totalMoment.toFixed(4)}</td>`;
+
+    document.getElementById("cgResult").innerHTML =
+        `<td></td><td></td><td></td><td>${displayedCG}</td>`;
+}
 
 document.getElementById('aircraft-select').addEventListener('change', function() {
     const selectedAircraft = this.value;
